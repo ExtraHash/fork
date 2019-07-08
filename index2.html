@@ -28,57 +28,6 @@
           <h1 class="display-4">Advanced Parameters</h1>
           <hr />
           <br>
-          <h3>Premine & Genesis TX Hex</h3>
-          <p>These are extra things you can do with your network, like having a premine and altering the hashing algorithm.</p>
-         <p>The order of the steps in executing a premine properly matters. These steps were contributed by Iburnmycd and Mestopholis.</p>
-          <ol>
-            <li>generate wallet (close the wallet, just need an address)</li>
-            <li>generate the new genesis hash with the daemon</li>
-            <li>edit the CryptoNoteConfig.h to include your new genesis transaction hex</li>
-            <li>recompile everything</li>
-            <li>start node 1</li>
-            <li>mine a block</li> 
-            <li>start node 2</li>
-            <li>mine some more blocks</li>
-            <li>open the wallet (this should be the first time the wallet is connecting to daemon, reset/recreate from keys if not getting premine coins)</li>
-            <li>Tada!</li>
-         </ol>
-       </div>
-    </div>
-      <div class="row">
-        <div class="col">
-          <div class="card">
-            <div class="card-header">
-              <code>src/config/CryptoNoteConfig.h</code>&nbsp;&nbsp;Premine & Genesis Reward
-            </div>
-            <div class="card-body">
-            	<p>This is where you define how many Atomic Units to reward the miner of the first block. To be smart, you would also hard code the address for this reward so that someone monitoring your commits doesn't compile and mine it first.</p>
-                <pre class="text-white bg-dark"><code>
-    const uint64_t GENESIS_BLOCK_REWARD = UINT64_C(0);</code>
-                </pre>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br />
-      <div class="row">
-        <div class="col">
-          <div class="card">
-            <div class="card-header">
-              <code>src/config/CryptoNoteConfig.h</code>&nbsp;&nbsp;Premine Genesis TX Hex
-            </div>
-            <div class="card-body">
-            	<p>This is the transaction hex of the first block, which has to be manually encoded.</p>
-            	<p>To hard code your address in the Genesis TX Hex, you must first compile the software as is, then launch the daemon with the following launch parameters to generate a new Genesis TX Hex with your wallet address encoded in it:</p>
-                <pre class="text-white bg-dark"><code>
-    ./TurtleCoind --print-genesis-tx --genesis-block-reward-address TRTLv2Fyavy8CXG8BPEbNeCHFZ1fuDCYCZ3vW5H5LXN4K2M2MHUpTENip9bbavpHvvPwb4NDkBWrNgURAd5DB38FHXWZyoBh4wW</code>
-                </pre>
-                <p>Once you have generated the new Genesis TX Hex, replace the old Genesis TX Hex in the source code with the new one you just generated. When you've replaced it and saved the document, recompile the software with your modified TX Hex and update the new daemon on your seed nodes.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br />
           <h3>Alternate Hashing Algorithms</h3>
           <p>Just like when we changed from standard CryptoNight to CryptoNight Light Variant 1, you too can change a few parameters, or rewrite them completely to achieve different results with the hashing algorithm.</p>
           <p>Be cautious, however, you can input bad values here that will yield disastrous results if you aren't careful. It is advised to do extensive testing and gain the opinions of many before launching any altered parameters.</p>
